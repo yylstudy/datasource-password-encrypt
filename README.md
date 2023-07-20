@@ -9,3 +9,27 @@ mvn clean install 后
 执行A的main方法类
 
 在target/classes下有看到D.classen，将D.classen替换lk-ss-1.6.jar中的D.class
+
+集成
+
+druid集成
+
+```java
+spring:
+  cloud:
+    refresh:
+      never-refreshable: com.zaxxer.hikari.HikariDataSource,com.linkcircle.ss.LHikariDataSource,com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceWrapper
+```
+
+HikariDataSource连接池加密：
+
+修改连接池类型为LHikariDataSource
+
+```
+spring.datasource.type=com.linkcircle.ss.LHikariDataSource
+
+Druid连接池加密
+spring.datasource.druid.connection-properties=config.decrypt=true;
+spring.datasource.druid.filter.config.enabled=true
+```
+
